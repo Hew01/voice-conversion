@@ -14,7 +14,7 @@ module.exports = function(api) {
           "selection": "./selection.json",
           "@views": "./src/views",
           "@data": "./src/data",
-          "@assets": "./assets"
+          "@assets": "./assets",
         }
       }]
     ]  

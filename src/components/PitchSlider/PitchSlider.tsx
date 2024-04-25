@@ -16,7 +16,7 @@ const PitchSlider = () => {
                     maximumTrackTintColor={colors.primaryGreyHex}
                     thumbTintColor={colors.primaryOrangeHex}
                     value={1}
-                    onValueChange={value => setRange(value)}
+                    onValueChange={value => setRange(Math.round(value))}
                 />
             </Section>
         </>

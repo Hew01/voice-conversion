@@ -3,12 +3,10 @@ import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { borderRadius, colors, fontSize, spacing } from 'theme/theme';
 import { CardImageBG, CardName } from './styled';
-import Icons from 'theme/icons';
 
 interface VoiceCardProps {
   id: number;
   name: string;
-  avatar: ImageSourcePropType | undefined;
   isSelected: any;
   onSelected: any;
 }
@@ -16,7 +14,6 @@ interface VoiceCardProps {
 const VoiceCard: React.FC<VoiceCardProps> = ({
   id,
   name,
-  avatar,
   isSelected,
   onSelected,
 }) => {
@@ -28,7 +25,7 @@ const VoiceCard: React.FC<VoiceCardProps> = ({
         end={{x: 1, y: 1}}
         colors={[colors.primaryGreyHex, colors.primaryBlackHex]}
         style={[styles.cardBackground, highlighted]}>
-        <CardImageBG source={avatar} resizeMode='cover'/>
+        <CardImageBG source={{uri: '../../assets/coffee_assets/americano/square/americano_pic_1_square.png'}} resizeMode='cover'/>
         <CardName>{name}</CardName>
       </LinearGradient>
     </TouchableOpacity>

@@ -22,7 +22,6 @@ const ModelSelector = () => {
             return <VoiceCard
                 id={item.id}
                 name={item.name}
-                avatar={item.avatar}
                 isSelected={item.id === selectedId}
                 onSelected={setSelectedId}
               ></VoiceCard>

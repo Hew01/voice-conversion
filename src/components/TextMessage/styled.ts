@@ -13,7 +13,7 @@ export const SectionTitle = styled.Text`
     color: ${colors.primaryLightGreyHex};
 `
 
-export const TextContainer = styled.TouchableOpacity`
+export const TextContainer = styled.View`
     height: 50px;
     border-radius: 15px;
     margin-top: 20px;
@@ -27,6 +27,7 @@ export const TextInput = styled.TextInput`
     font-size: ${fontSize.size_16};
     font-family: 'Poppins-Medium';
     color: ${colors.primaryWhiteHex};
+    flex: 1;
 `
 
 export const Icon = styled(CustomIcon)`

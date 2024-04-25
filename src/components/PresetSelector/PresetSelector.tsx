@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useState } from 'react'
-import { colors } from 'theme/theme';
-import { Section, SectionTitle } from './styled';
+import { CustomPicker, PickerLabel, Section, SectionTitle } from './styled';
 
 
 const PresetSelector = () => {
@@ -10,17 +9,17 @@ const PresetSelector = () => {
         <>
             <Section>
                 <SectionTitle>Select the preset</SectionTitle>
-                <Picker 
+                <CustomPicker 
                     selectedValue={preset}
                     placeholder={'Select'}
-                    onValueChange={(itemValue) => 
+                    onValueChange={(itemValue: any) => 
                         setPreset(itemValue)
                 }>
-                    <Picker.Item label="Fast" value="fast"/>    
-                    <Picker.Item label="Ultra Fast" value="ultra_fast"/>    
-                    <Picker.Item label="Standard" value="standard"/>    
-                    <Picker.Item label="High Quality" value="high_quality"/>    
-                </Picker>
+                    <PickerLabel label="Fast" value="fast"/>    
+                    <PickerLabel label="Ultra Fast" value="ultra_fast"/>    
+                    <PickerLabel label="Standard" value="standard"/>    
+                    <PickerLabel label="High Quality" value="high_quality"/>    
+                </CustomPicker>
             </Section>
         </>
     )

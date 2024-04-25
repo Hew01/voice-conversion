@@ -13,6 +13,7 @@ const TextMessage = () => {
                     placeholder='Type message here'
                     value={voiceMessage}
                     placeholderTextColor={colors.primaryLightGreyHex}
+                    onChangeText={setVoiceMessage}
                 />
             </TextContainer>
         </Section>

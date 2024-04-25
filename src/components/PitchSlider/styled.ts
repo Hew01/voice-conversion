@@ -1,6 +1,5 @@
 import styled from 'styled-components/native'
 import { colors, fontSize, spacing } from 'theme/theme'
-import CustomIcon from 'theme/icons'
 import Slider from '@react-native-community/slider';
 
 export const Section = styled.View`

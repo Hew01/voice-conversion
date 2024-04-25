@@ -4,8 +4,9 @@ import React from 'react'
 import TextMessage from 'components/TextMessage/TextMessage'
 import PresetSelector from 'components/PresetSelector/PresetSelector'
 import PitchSlider from 'components/PitchSlider/PitchSlider'
+import HandleButton from 'components/Button/HandleButton'
 
-const SecondStepView = ({navigation}: {navigation: any}) => {
+const SecondStepView = () => {
   return (
     <ScreenContainer>
       <StatusBar style="dark" translucent backgroundColor="transparent"/>
@@ -13,9 +14,7 @@ const SecondStepView = ({navigation}: {navigation: any}) => {
       <TextMessage/>
       <PresetSelector/>
       <PitchSlider/>
-      <Button onPress={() => navigation.navigate('FirstStep')}>
-        <ButtonText>Complete</ButtonText>
-      </Button>
+      <HandleButton screen='SecondStep'/>
     </ScreenContainer>
   )
 }

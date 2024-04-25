@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 import { colors, fontSize, spacing } from 'theme/theme'
 import CustomIcon from 'theme/icons'
+import { Picker } from '@react-native-picker/picker'
 
 export const Section = styled.View`
     padding: 0 ${spacing.space_30}px;
@@ -21,9 +22,12 @@ export const CustomPicker = styled(Picker)`
     flex-direction: row;
     align-items: center;
     padding: 0 20px;
+    font-size: ${fontSize.size_16};
+    font-family: 'Poppins-Medium';
+    color: ${colors.primaryWhiteHex};
 `
 
-export const PickerLabel = styled(Picker.Text)`
+export const PickerLabel = styled(Picker.Item)`
     font-size: ${fontSize.size_16};
     font-family: 'Poppins-Medium';
     color: ${colors.primaryWhiteHex};
