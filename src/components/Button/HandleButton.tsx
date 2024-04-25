@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, ButtonText } from './styled'
+import { Button, ButtonText, LoadingButton } from './styled'
 import { NavigationContext } from '@react-navigation/native'
+import { useStore } from 'store/store'
+import axios from 'axios'
 
 interface buttonProp {
   screen: string,
@@ -11,6 +13,28 @@ const HandleButton: React.FC<buttonProp> = ({screen}) => {
   const navigation = useContext(NavigationContext);
   const [screenDestination, setScreenDestination] = useState('')
   const [textButton, setTextButton] = useState('')
+  const [loading, setLoading] = useState(false);
+  const voiceInput = useStore((state: any) => state.voiceInput); // get voicePackList from the store)
+
+  const uploadSettingsToServer = async () => {
+    setLoading(true);
+    try {
+      const rvcResponse = await axios.post('http://localhost:PORT/rvc', {
+        audioInput: voiceInput.audioInput,
+        pitch: voiceInput.pitch,
+        model: voiceInput.model,
+      });
+      console.log(rvcResponse);
+      const tortoiseResponse = await axios.post('http://localhost:PORT/tortoise', {
+        message: voiceInput.message,
+        preset: voiceInput.preset,
+      });
+      console.log(tortoiseResponse);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+  }}
   useEffect(() => {
     switch (screen) {
       case 'HomeView':
@@ -34,13 +58,24 @@ const HandleButton: React.FC<buttonProp> = ({screen}) => {
         break;
     }
   }, [screen]);
+  const handlePressed = () => {
+    if (screen === 'SecondStep')
+      uploadSettingsToServer();
+    navigation?.navigate(screenDestination);
+  }
   return (
-    <Button onPress={() => navigation?.navigate(screenDestination)}>
-      <ButtonText>{textButton}</ButtonText>
-    </Button>
+    <>
+      {(!loading) ? (
+          <Button onPress={() => handlePressed()}>
+            <ButtonText>{textButton}</ButtonText>
+          </Button>
+      ) : (
+          <LoadingButton disabled>
+            <ButtonText>Loading...</ButtonText>
+          </LoadingButton>
+      )}
+    </>
   )
 }
 
 export default HandleButton
-
-const styles = StyleSheet.create({})

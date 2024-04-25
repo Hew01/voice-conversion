@@ -2,7 +2,7 @@ const voicePackData = [
     {
         id: 1,
         name: 'Mr.Quang',
-        fileDirectory: '',
+        fileDirectory: 'put-something-here',
     }
 ]
 

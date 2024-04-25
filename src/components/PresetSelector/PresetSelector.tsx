@@ -1,23 +1,24 @@
 import { StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import { CustomPicker, PickerLabel, Section, SectionTitle } from './styled';
-
+import { useStore } from 'store/store';
 
 const PresetSelector = () => {
-    const [preset, setPreset] = useState(0);
+    const setVoiceInput = useStore((state: any) => state.setVoiceInput);
+
     return (
         <>
             <Section>
                 <SectionTitle>Select the preset</SectionTitle>
                 <CustomPicker 
-                    selectedValue={preset}
-                    placeholder={'Select'}
-                    onValueChange={(itemValue: any) => 
-                        setPreset(itemValue)
-                }>
+                    onValueChange={(itemValue: any) => {
+                        // Immediately store the selected value in the Zustand store
+                        setVoiceInput({preset: itemValue});
+                    }}
+                >
+                    <PickerLabel label="Standard" value="standard"/>    
                     <PickerLabel label="Fast" value="fast"/>    
                     <PickerLabel label="Ultra Fast" value="ultra_fast"/>    
-                    <PickerLabel label="Standard" value="standard"/>    
                     <PickerLabel label="High Quality" value="high_quality"/>    
                 </CustomPicker>
             </Section>

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button, View, Text } from 'react-native';
-import Slider from '@react-native-community/slider';
 import { Audio } from 'expo-av';
 import { CustomSlider, PlayButton, Player, Time } from './styled';
 import FontAwesome from '@expo/vector-icons/FontAwesome'
@@ -10,6 +8,7 @@ const MusicPlayer = () => {
   const [totalLength, setTotalLength] = useState(1);
   const [sliderValue, setSliderValue] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const loadAudio = async () => {
@@ -65,36 +64,51 @@ const MusicPlayer = () => {
   };
 
   return (
-    <Player>
-      <PlayButton onPress={togglePlay}>
-        {isPlaying ? <FontAwesome name="pause" size={30} color="white"/>
-        : <FontAwesome name="play" size={30} color="white"/>}
-      </PlayButton>
-      <CustomSlider
-        value={sliderValue}
-        minimumValue={0}
-        maximumValue={totalLength}
-        onSlidingStart={onSlidingStart}
-        onSlidingComplete={onSlidingComplete}
-      />
-      <Time>{formatTime(sliderValue)}</Time>
-    </Player>
+    <>
+    {/* {(!isLoading) ? ( */}
+      <Player>
+        <PlayButton onPress={togglePlay}>
+          {isPlaying ? <FontAwesome name="pause" size={30} color="white"/>
+          : <FontAwesome name="play" size={30} color="white"/>}
+        </PlayButton>
+        <CustomSlider
+          value={sliderValue}
+          minimumValue={0}
+          maximumValue={totalLength}
+          onSlidingStart={onSlidingStart}
+          onSlidingComplete={onSlidingComplete}
+        />
+        <Time>{formatTime(sliderValue)}</Time>
+      </Player>
+    {/* ) : (
+      <Time>Waiting for the file to be done...</Time>
+    )}    */}
+    </>
   );
 };
 
 export default MusicPlayer;
 
-//   useEffect(() => {
-//     axios.get('http://localhost:YOUR_PORT/YOUR_PATH')
-//       .then(async response => {
-//         const audioFileUrl = response.data;
-//         const { sound } = await Audio.Sound.createAsync({ uri: audioFileUrl });
-//         setSound(sound);
-//         sound.setOnPlaybackStatusUpdate((status) => {
-//           if (status.isLoaded && status.playableDurationMillis) {
-//             setTotalLength(status.playableDurationMillis / 1000);
-//           }
-//         });
-//       })
-//       .catch(error => console.log(error));
-//   }, []);
+// useEffect(() => {
+//   const loadAudio = async () => {
+//     try {
+//       setIsLoading(true);
+//       const response = await axios.get('http://localhost:YOUR_PORT/YOUR_PATH');
+//       const audioFileUrl = response.data;
+//       const { sound } = await Audio.Sound.createAsync({ uri: audioFileUrl });
+//       setSound(sound);
+//       sound.setOnPlaybackStatusUpdate((status) => {
+//         if (status.isLoaded) {
+//           setTotalLength(status.durationMillis ? status.durationMillis / 1000 : 0);
+//           setSliderValue(status.positionMillis ? status.positionMillis / 1000 : 0);
+//         }
+//       });
+//     } catch (error) {
+//       console.error(error);
+//     } finally {
+//       setIsLoading(false);  
+//     }
+//   };
+
+//   loadAudio();
+// }, []);

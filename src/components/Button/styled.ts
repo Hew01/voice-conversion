@@ -19,3 +19,16 @@ export const ButtonText = styled.Text`
     font-family: 'Poppins-SemiBold';
     color: white;
 `
+
+export const LoadingButton = styled.TouchableOpacity`
+    position: absolute;
+    bottom: 30;
+    left: 0;
+    right: 0;
+    height: 60px;
+    margin: 0 40px;
+    border-radius: 15px;
+    background-color: ${colors.primaryLightGreyHex};
+    justify-content: center;
+    align-items: center;
+`
